@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 11-04-2024 a las 07:21:36
+-- Tiempo de generación: 11-04-2024 a las 07:40:06
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.2.4
 
@@ -24,6 +24,19 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `casilla`
+--
+
+CREATE TABLE `casilla` (
+  `id` int(11) NOT NULL,
+  `casilla` varchar(20) NOT NULL,
+  `seccion` varchar(20) NOT NULL,
+  `tipo_casilla` varchar(30) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `listado`
 --
 
@@ -35,7 +48,7 @@ CREATE TABLE `listado` (
   `seccion` int(11) NOT NULL,
   `municipio` int(11) NOT NULL,
   `direccion` varchar(150) NOT NULL,
-  `si_no` int(11) NOT NULL
+  `si_no` int(11) NOT NULL COMMENT 'Si pertenece o no al listado'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
@@ -60,12 +73,19 @@ CREATE TABLE `usr` (
   `usr` varchar(50) NOT NULL,
   `pwd` varchar(120) NOT NULL,
   `perfil` int(11) NOT NULL,
-  `seccion` int(11) NOT NULL
+  `seccion` int(11) NOT NULL,
+  `casilla` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Índices para tablas volcadas
 --
+
+--
+-- Indices de la tabla `casilla`
+--
+ALTER TABLE `casilla`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indices de la tabla `listado`
@@ -88,6 +108,12 @@ ALTER TABLE `usr`
 --
 -- AUTO_INCREMENT de las tablas volcadas
 --
+
+--
+-- AUTO_INCREMENT de la tabla `casilla`
+--
+ALTER TABLE `casilla`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `listado`
