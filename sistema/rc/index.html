@@ -236,44 +236,62 @@
         </table>
 
         <div class="mb-5">
-          <a href="../examples/" class="btn btn-primary btn-lg px-4">Registrar votante</a>
+          <div class="row g-2">
+            <div class="col-sm-12 col-md-6 col-lg-6">
+              <button class="btn btn-primary px-4 w-100" data-bs-toggle="modal" data-bs-target="#modalRegistro">Registrar votante</button>
+            </div>
+            <div class="col-sm-12 col-md-6 col-lg-6">
+              <button class="btn btn-danger px-4 w-100" data-bs-toggle="modal" data-bs-target="#modalIncidencia">Incidencia</button>
+            </div>
         </div>
 
-        <ul class="list-unstyled ps-0">
-          <li>
-            <a class="icon-link mb-1" href="https://github.com/twbs/examples/tree/main/icons-font" rel="noopener" target="_blank">
-              <svg class="bi" width="16" height="16"><use xlink:href="#arrow-right-circle"/></svg>
-              Bootstrap npm starter
-            </a>
-          </li>
-          <li>
-            <a class="icon-link mb-1" href="https://github.com/twbs/examples/tree/main/parcel" rel="noopener" target="_blank">
-              <svg class="bi" width="16" height="16"><use xlink:href="#arrow-right-circle"/></svg>
-              Bootstrap Parcel starter
-            </a>
-          </li>
-          <li>
-            <a class="icon-link mb-1" href="https://github.com/twbs/examples/tree/main/vite" rel="noopener" target="_blank">
-              <svg class="bi" width="16" height="16"><use xlink:href="#arrow-right-circle"/></svg>
-              Bootstrap Vite starter
-            </a>
-          </li>
-          <li>
-            <a class="icon-link mb-1" href="https://github.com/twbs/examples/tree/main/webpack" rel="noopener" target="_blank">
-              <svg class="bi" width="16" height="16"><use xlink:href="#arrow-right-circle"/></svg>
-              Bootstrap Webpack starter
-            </a>
-          </li>
-        </ul>
       </div>
 
     </div>
   </main>
   <footer class="pt-5 my-5 text-body-secondary border-top">
-    Created by the Bootstrap team &middot; &copy; 2024
+    Nexus &middot; &copy; 2024
   </footer>
 </div>
 <script src="../../assets/dist/js/bootstrap.bundle.min.js"></script>
 
     </body>
+
+<!-- Modal registro -->
+<div class="modal fade bg-primary" id="modalRegistro" data-bs-backdrop="static" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Registro</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body text-center">
+        ¿Desea registrar votante?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+        <button type="button" class="btn btn-primary">Registrar</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Modal incidenca -->
+<div class="modal fade bg-danger" id="modalIncidencia" data-bs-backdrop="static" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Incidencias</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body text-center">
+        ¿Desea reportar incidencia?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+        <button type="button" class="btn btn-primary">Registrar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 </html>
