@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost
--- Tiempo de generación: 12-04-2024 a las 00:33:14
+-- Tiempo de generación: 12-04-2024 a las 01:58:57
 -- Versión del servidor: 10.4.21-MariaDB
 -- Versión de PHP: 7.4.28
 
@@ -71,6 +71,7 @@ CREATE TABLE `listado` (
   `curp` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
   `nominal` varchar(30) COLLATE utf8_unicode_ci NOT NULL,
   `seccion` int(11) NOT NULL,
+  `casilla` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
   `municipio` int(11) NOT NULL,
   `direccion` varchar(150) COLLATE utf8_unicode_ci NOT NULL,
   `si_no` int(11) NOT NULL COMMENT 'Si pertenece o no al listado',
@@ -82,11 +83,11 @@ CREATE TABLE `listado` (
 -- Volcado de datos para la tabla `listado`
 --
 
-INSERT INTO `listado` (`id`, `nombre`, `curp`, `nominal`, `seccion`, `municipio`, `direccion`, `si_no`, `voto`, `hora_voto`) VALUES
-(1, 'xzczcz', '22222', '210', 2, 2, 'sadadsfdsaf', 1, NULL, '0000-00-00 00:00:00'),
-(2, 'dfsafsdf', '3', '332', 3, 3, 'dsfzdfsd', 1, 1, '0000-00-00 00:00:00'),
-(3, 'dssdfsdf', '4', '432', 4, 4, 'fgdgdg', 0, 1, '0000-00-00 00:00:00'),
-(4, 'cvxcvxcv', '5', '5678', 5, 5, 'fdgdfg', 1, 1, '0000-00-00 00:00:00');
+INSERT INTO `listado` (`id`, `nombre`, `curp`, `nominal`, `seccion`, `casilla`, `municipio`, `direccion`, `si_no`, `voto`, `hora_voto`) VALUES
+(1, 'xzczcz', '22222', '210', 2, '', 2, 'sadadsfdsaf', 1, NULL, '0000-00-00 00:00:00'),
+(2, 'dfsafsdf', '3', '332', 2, '', 3, 'dsfzdfsd', 1, NULL, '0000-00-00 00:00:00'),
+(3, 'dssdfsdf', '4', '432', 2, '', 4, 'fgdgdg', 0, NULL, '0000-00-00 00:00:00'),
+(4, 'cvxcvxcv', '5', '5678', 2, '', 5, 'fdgdfg', 1, 1, '0000-00-00 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -112,16 +113,17 @@ CREATE TABLE `usr` (
   `pwd` varchar(120) COLLATE utf8_unicode_ci NOT NULL,
   `perfil` int(11) NOT NULL,
   `seccion` int(11) NOT NULL,
-  `casilla` varchar(20) COLLATE utf8_unicode_ci NOT NULL
+  `casilla` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
+  `estatus` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Volcado de datos para la tabla `usr`
 --
 
-INSERT INTO `usr` (`id`, `nombre`, `usr`, `pwd`, `perfil`, `seccion`, `casilla`) VALUES
-(1, 'Uno', 'uno', '123456789', 1, 1, '1'),
-(2, 'Dos', 'dos', '123456789', 2, 2, '2');
+INSERT INTO `usr` (`id`, `nombre`, `usr`, `pwd`, `perfil`, `seccion`, `casilla`, `estatus`) VALUES
+(1, 'Uno', 'uno', '123456789', 1, 1, '1', 1),
+(2, 'Dos', 'dos', '123456789', 2, 2, '2', 0);
 
 -- --------------------------------------------------------
 
@@ -150,7 +152,15 @@ CREATE TABLE `votacion_casilla` (
 --
 
 INSERT INTO `votacion_casilla` (`id`, `pri`, `pan`, `prd`, `morena`, `pt`, `mc`, `otro`, `anulados`, `rc_captura`, `fecha_hora`, `seccion`, `casilla`) VALUES
-(1, 12, 12, 1, 2, 2, 34, 4, 5, 1, '2024-04-11 17:17:52', '1', '1');
+(1, 12, 12, 1, 2, 2, 34, 4, 5, 1, '2024-04-11 17:17:52', '1', '1'),
+(2, 12, 12, 1, 2, 2, 34, 4, 5, 1, '2024-04-11 17:42:45', '1', '1'),
+(3, 12, 12, 1, 2, 2, 34, 4, 5, 1, '2024-04-11 17:42:52', '1', '1'),
+(4, 12, 12, 1, 2, 2, 34, 4, 5, 1, '2024-04-11 17:43:10', '1', '1'),
+(5, 12, 12, 1, 2, 2, 34, 4, 5, 1, '2024-04-11 17:43:20', '1', '1'),
+(6, 1, 1, 1, 1, 1, 1, 1, 1, 1, '2024-04-11 17:46:15', '1', '1'),
+(7, 1, 1, 1, 1, 1, 1, 1, 1, 1, '2024-04-11 17:47:12', '1', '1'),
+(8, 1, 1, 1, 1, 1, 1, 1, 1, 1, '2024-04-11 17:47:53', '1', '1'),
+(9, 2, 2, 2, 2, 2, 2, 2, 2, 1, '2024-04-11 17:48:58', '1', '1');
 
 --
 -- Índices para tablas volcadas
@@ -230,7 +240,7 @@ ALTER TABLE `usr`
 -- AUTO_INCREMENT de la tabla `votacion_casilla`
 --
 ALTER TABLE `votacion_casilla`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
