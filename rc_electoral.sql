@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 11-04-2024 a las 07:40:06
+-- Tiempo de generación: 11-04-2024 a las 16:09:10
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.2.4
 
@@ -48,7 +48,8 @@ CREATE TABLE `listado` (
   `seccion` int(11) NOT NULL,
   `municipio` int(11) NOT NULL,
   `direccion` varchar(150) NOT NULL,
-  `si_no` int(11) NOT NULL COMMENT 'Si pertenece o no al listado'
+  `si_no` int(11) NOT NULL COMMENT 'Si pertenece o no al listado',
+  `voto` int(11) NOT NULL COMMENT '0 - no\r\n1 - si'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
@@ -70,11 +71,32 @@ CREATE TABLE `seccion` (
 
 CREATE TABLE `usr` (
   `id` int(11) NOT NULL,
+  `nombre` varchar(70) NOT NULL,
   `usr` varchar(50) NOT NULL,
   `pwd` varchar(120) NOT NULL,
   `perfil` int(11) NOT NULL,
   `seccion` int(11) NOT NULL,
   `casilla` varchar(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `votacion_casilla`
+--
+
+CREATE TABLE `votacion_casilla` (
+  `id` int(11) NOT NULL,
+  `pri` int(11) NOT NULL,
+  `pan` int(11) NOT NULL,
+  `prd` int(11) NOT NULL,
+  `morena` int(11) NOT NULL,
+  `pt` int(11) NOT NULL,
+  `mc` int(11) NOT NULL,
+  `otro` int(11) NOT NULL,
+  `anulados` int(11) NOT NULL,
+  `rc_captura` int(11) NOT NULL,
+  `fecha_hora` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
@@ -106,6 +128,12 @@ ALTER TABLE `usr`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indices de la tabla `votacion_casilla`
+--
+ALTER TABLE `votacion_casilla`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- AUTO_INCREMENT de las tablas volcadas
 --
 
@@ -131,6 +159,12 @@ ALTER TABLE `seccion`
 -- AUTO_INCREMENT de la tabla `usr`
 --
 ALTER TABLE `usr`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `votacion_casilla`
+--
+ALTER TABLE `votacion_casilla`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 COMMIT;
 
