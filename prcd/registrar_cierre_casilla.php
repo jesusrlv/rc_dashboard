@@ -20,7 +20,7 @@ session_start();
     $otroVoto = $_POST['otroVoto'];
     $anulados = $_POST['anulados'];
 
-    $sqlInsert ="INSERT INTO incidencias(
+    $sqlInsert ="INSERT INTO votacion_casilla(
         pri,
         pan,
         prd,
