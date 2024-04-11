@@ -129,3 +129,47 @@ function reporteIncidencia(){
             }
         });
 }
+
+function cierreCasilla(){
+    var pri = document.getElementById('pri').value;
+    var pan = document.getElementById('pan').value;
+    var prd = document.getElementById('prd').value;
+    var morena = document.getElementById('morena').value;
+    var pt = document.getElementById('pt').value;
+    var mc = document.getElementById('mc').value;
+    var otroVoto = document.getElementById('otroVoto').value;
+    var anulados = document.getElementById('anulados').value;
+
+    $.ajax(
+        {
+            type: "POST",
+            url: '../../prcd/registrar_cierre_casilla.php',
+            dataType:'json',
+            data:{
+              pri:pri,
+              pan:pan,
+              prd:prd,
+              morena:morena,
+              pt:pt,
+              mc:mc,
+              otroVoto:otroVoto,
+              anulados:anulados
+            },
+            success: function (data) {
+              var jsonData = JSON.parse(JSON.stringify(data));
+              var success = jsonData.success;
+
+              if (success == 1){
+                $('#modalIncidencia').modal('hide');
+                alert('La casilla se ha cerrado correctamente');
+                document.getElementById('incidencia').value = "";
+
+              }
+              else if(success == 0){
+                alert('No se pudo cerrar la casilla');
+                console.log(jsonData.error);
+              }
+
+            }
+        });
+}
