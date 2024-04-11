@@ -98,3 +98,34 @@ function registraVotacion(){
             }
         });
 }
+
+function reporteIncidencia(){
+    // var id = document.getElementById('idNominal').value;
+    var incidencia = document.getElementById('incidencia').value;
+    // var idSess = document.getElementById('idNominal').value;
+
+    $.ajax(
+        {
+            type: "POST",
+            url: '../../prcd/registrar_incidencia.php',
+            dataType:'json',
+            data:{
+              incidencia:incidencia
+            },
+            success: function (data) {
+              var jsonData = JSON.parse(JSON.stringify(data));
+              var success = jsonData.success;
+
+              if (success == 1){
+                $('#modalIncidencia').modal('hide');
+                alert('Incidencia reportada correctamente');
+                document.getElementById('incidencia').value = "";
+
+              }
+              else if(success == 0){
+                alert('No se pudo registrar el voto');
+              }
+
+            }
+        });
+}
