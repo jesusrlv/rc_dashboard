@@ -163,6 +163,7 @@ function cierreCasilla(){
                 $('#modalIncidencia').modal('hide');
                 alert('La casilla se ha cerrado correctamente');
                 document.getElementById('incidencia').value = "";
+                window.location.href = '../../prcd/sort.php';
 
               }
               else if(success == 0){

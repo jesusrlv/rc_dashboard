@@ -5,7 +5,7 @@ include('../prcd/qc.php');
 $user = $_POST['usr'];
 $pwd = $_POST['pwd'];
 
-$sql = "SELECT * FROM usr WHERE usr = '$user' AND pwd = '$pwd'";
+$sql = "SELECT * FROM usr WHERE usr = '$user' AND pwd = '$pwd' AND estatus = 0";
 $resultado = $conn->query($sql);
 
 $fila = $resultado->num_rows;

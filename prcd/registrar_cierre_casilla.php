@@ -51,6 +51,10 @@ session_start();
     $resultadosqlInsert = $conn->query($sqlInsert);
 
     if($resultadosqlInsert){
+        $sqlCerrar = "UPDATE usr SET 
+        estatus = 1
+        WHERE id = '$id'";
+        $resultadosqlCerrar = $conn->query($sqlCerrar);
         echo json_encode(array(
             "success" => 1
         ));
