@@ -12,13 +12,16 @@
 
     <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/starter-template/">
 
-    
-
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3">
 
     <link href="../../assets/dist/css/bootstrap.min.css" rel="stylesheet">
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+    <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+
+    
+    <script src="../../scripts/nominal.js"></script>
 
     <style>
       .bd-placeholder-img {
@@ -182,9 +185,9 @@
     <div class="mb-3">
       <div class="input-group">
         <span class="input-group-text" id="basic-addon1"><i class="bi bi-search"></i></span>
-        <input type="text" class="form-control" placeholder="Introduzca Clave Nominal Electoral" aria-label="Introduzca Clave Nominal Electoral" aria-describedby="basic-addon1">
+        <input type="text" class="form-control" placeholder="Introduzca Clave Nominal Electoral" aria-label="Introduzca Clave Nominal Electoral" aria-describedby="basic-addon1" id="claveNominal2" oninput="claveN(this.value)">
       </div>
-      <div class="form-text" id="basic-addon4">Agrega la clave que se encuentra en ...</div>
+      <div class="form-text" id="basic-addon4"><span id="textoCN">Agrega la clave que se encuentra en ...</span></div>
     </div>
     
     <!-- <p class="fs-5 col-md-8">Quickly and easily get started with Bootstrap's compiled, production-ready files with this barebones example featuring some basic HTML and helpful links. Download all our examples to get started.</p> -->
@@ -198,38 +201,34 @@
         <p>Los datos mostrados son referentes a la Clave Nominal a la que pertenece la persona.</p>
 
         <table class="table table-sm small">
-          <thead>
+          <thead class="text-center">
             <tr class="table-dark">
               <th scope="col">Concepto</th>
-              <th scope="col">Dato</th>
+              <th scope="col">Datos</th>
             </tr>
           </thead>
           <tbody>
             <tr>
               <th scope="row">Nombre</th>
-              <td>Mark</td>
+              <td><span id="nombreNominal"></span></td>
             </tr>
             <tr>
               <th scope="row">Nominal</th>
-              <td>Mark</td>
+              <td><span id="claveNominal"></span></td>
             </tr>
             <tr>
               <th scope="row">Sección</th>
-              <td>Mark</td>
-            </tr>
-            <tr>
-              <th scope="row">Dirección</th>
-              <td>Mark</td>
+              <td><span id="seccionNominal"></span></td>
             </tr>
             <tr>
               <th scope="row">Municipio</th>
-              <td>Mark</td>
+              <td><span id="municipioNominal"></span></td>
             </tr>
             <tr>
-              <th scope="row">Municipio</th>
-              <td>Mark</td>
+              <th scope="row" class="table-dark text-center">Votó:</th>
+              <td class="text-center"><span id="votoNominal"></span></td>
             </tr>
-            
+            <input type="text" id="idNominal" hidden>
             
           </tbody>
         </table>
@@ -237,10 +236,10 @@
         <div class="mb-5">
           <div class="row g-2">
             <div class="col-sm-12 col-md-6 col-lg-6">
-              <button class="btn btn-primary px-4 w-100" data-bs-toggle="modal" data-bs-target="#modalRegistro">Registrar votante</button>
+              <button class="btn btn-primary px-4 w-100" data-bs-toggle="modal" data-bs-target="#modalRegistro" id="btnRegistro" disabled>Registrar votante</button>
             </div>
             <div class="col-sm-12 col-md-6 col-lg-6">
-              <button class="btn btn-danger px-4 w-100" data-bs-toggle="modal" data-bs-target="#modalIncidencia">Incidencia</button>
+              <button class="btn btn-danger px-4 w-100" data-bs-toggle="modal" data-bs-target="#modalIncidencia" id="btnIncidencias">Incidencia</button>
             </div>
         </div>
 
@@ -269,7 +268,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-        <button type="button" class="btn btn-primary">Registrar</button>
+        <button type="button" class="btn btn-primary" onclick="registraVotacion()">Registrar</button>
       </div>
     </div>
   </div>

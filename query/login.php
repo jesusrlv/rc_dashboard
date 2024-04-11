@@ -3,7 +3,7 @@ session_start();
 include('../prcd/qc.php');
 
 $user = $_POST['usr'];
-$pwd = md5($_POST['pwd']);
+$pwd = ($_POST['pwd']);
 
 $sql = "SELECT * FROM usr WHERE user = '$user' AND pwd = '$pwd'";
 $resultado = $conn->query($sql);
