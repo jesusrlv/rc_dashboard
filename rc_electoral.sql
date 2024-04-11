@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.1
+-- version 5.1.3
 -- https://www.phpmyadmin.net/
 --
--- Servidor: 127.0.0.1
--- Tiempo de generación: 11-04-2024 a las 16:09:10
--- Versión del servidor: 10.4.28-MariaDB
--- Versión de PHP: 8.2.4
+-- Servidor: localhost
+-- Tiempo de generación: 12-04-2024 a las 00:33:14
+-- Versión del servidor: 10.4.21-MariaDB
+-- Versión de PHP: 7.4.28
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -29,10 +29,35 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `casilla` (
   `id` int(11) NOT NULL,
-  `casilla` varchar(20) NOT NULL,
-  `seccion` varchar(20) NOT NULL,
-  `tipo_casilla` varchar(30) NOT NULL
+  `casilla` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
+  `seccion` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
+  `tipo_casilla` varchar(30) COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `incidencias`
+--
+
+CREATE TABLE `incidencias` (
+  `id` int(11) NOT NULL,
+  `incidencia` varchar(1000) COLLATE utf8_unicode_ci NOT NULL,
+  `idRC` int(11) NOT NULL,
+  `nombre` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  `seccion` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
+  `casilla` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
+  `horafecha` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Volcado de datos para la tabla `incidencias`
+--
+
+INSERT INTO `incidencias` (`id`, `incidencia`, `idRC`, `nombre`, `seccion`, `casilla`, `horafecha`) VALUES
+(1, '', 1, 'Uno', '1', '1', '2024-04-11 16:50:43'),
+(2, '', 1, 'Uno', '1', '1', '2024-04-11 16:51:21'),
+(3, 'adsfsafdsaf', 1, 'Uno', '1', '1', '2024-04-11 16:52:35');
 
 -- --------------------------------------------------------
 
@@ -42,15 +67,26 @@ CREATE TABLE `casilla` (
 
 CREATE TABLE `listado` (
   `id` int(11) NOT NULL,
-  `nombre` varchar(100) NOT NULL,
-  `curp` varchar(20) NOT NULL,
-  `nominal` varchar(30) NOT NULL,
+  `nombre` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  `curp` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
+  `nominal` varchar(30) COLLATE utf8_unicode_ci NOT NULL,
   `seccion` int(11) NOT NULL,
   `municipio` int(11) NOT NULL,
-  `direccion` varchar(150) NOT NULL,
+  `direccion` varchar(150) COLLATE utf8_unicode_ci NOT NULL,
   `si_no` int(11) NOT NULL COMMENT 'Si pertenece o no al listado',
-  `voto` int(11) NOT NULL COMMENT '0 - no\r\n1 - si'
+  `voto` int(11) DEFAULT NULL COMMENT '0 - no\r\n1 - si',
+  `hora_voto` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Volcado de datos para la tabla `listado`
+--
+
+INSERT INTO `listado` (`id`, `nombre`, `curp`, `nominal`, `seccion`, `municipio`, `direccion`, `si_no`, `voto`, `hora_voto`) VALUES
+(1, 'xzczcz', '22222', '210', 2, 2, 'sadadsfdsaf', 1, NULL, '0000-00-00 00:00:00'),
+(2, 'dfsafsdf', '3', '332', 3, 3, 'dsfzdfsd', 1, 1, '0000-00-00 00:00:00'),
+(3, 'dssdfsdf', '4', '432', 4, 4, 'fgdgdg', 0, 1, '0000-00-00 00:00:00'),
+(4, 'cvxcvxcv', '5', '5678', 5, 5, 'fdgdfg', 1, 1, '0000-00-00 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -71,13 +107,21 @@ CREATE TABLE `seccion` (
 
 CREATE TABLE `usr` (
   `id` int(11) NOT NULL,
-  `nombre` varchar(70) NOT NULL,
-  `usr` varchar(50) NOT NULL,
-  `pwd` varchar(120) NOT NULL,
+  `nombre` varchar(70) COLLATE utf8_unicode_ci NOT NULL,
+  `usr` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+  `pwd` varchar(120) COLLATE utf8_unicode_ci NOT NULL,
   `perfil` int(11) NOT NULL,
   `seccion` int(11) NOT NULL,
-  `casilla` varchar(20) NOT NULL
+  `casilla` varchar(20) COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Volcado de datos para la tabla `usr`
+--
+
+INSERT INTO `usr` (`id`, `nombre`, `usr`, `pwd`, `perfil`, `seccion`, `casilla`) VALUES
+(1, 'Uno', 'uno', '123456789', 1, 1, '1'),
+(2, 'Dos', 'dos', '123456789', 2, 2, '2');
 
 -- --------------------------------------------------------
 
@@ -96,8 +140,17 @@ CREATE TABLE `votacion_casilla` (
   `otro` int(11) NOT NULL,
   `anulados` int(11) NOT NULL,
   `rc_captura` int(11) NOT NULL,
-  `fecha_hora` datetime NOT NULL
+  `fecha_hora` datetime NOT NULL,
+  `seccion` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
+  `casilla` varchar(20) COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Volcado de datos para la tabla `votacion_casilla`
+--
+
+INSERT INTO `votacion_casilla` (`id`, `pri`, `pan`, `prd`, `morena`, `pt`, `mc`, `otro`, `anulados`, `rc_captura`, `fecha_hora`, `seccion`, `casilla`) VALUES
+(1, 12, 12, 1, 2, 2, 34, 4, 5, 1, '2024-04-11 17:17:52', '1', '1');
 
 --
 -- Índices para tablas volcadas
@@ -107,6 +160,12 @@ CREATE TABLE `votacion_casilla` (
 -- Indices de la tabla `casilla`
 --
 ALTER TABLE `casilla`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indices de la tabla `incidencias`
+--
+ALTER TABLE `incidencias`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -144,10 +203,16 @@ ALTER TABLE `casilla`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT de la tabla `incidencias`
+--
+ALTER TABLE `incidencias`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
 -- AUTO_INCREMENT de la tabla `listado`
 --
 ALTER TABLE `listado`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de la tabla `seccion`
@@ -159,13 +224,13 @@ ALTER TABLE `seccion`
 -- AUTO_INCREMENT de la tabla `usr`
 --
 ALTER TABLE `usr`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `votacion_casilla`
 --
 ALTER TABLE `votacion_casilla`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
