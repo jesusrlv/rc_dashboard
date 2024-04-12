@@ -181,27 +181,34 @@
     <!-- <div class="mb-5">
       <a href="../../assets/s/" class="btn btn-primary btn-lg px-4">Download examples</a>
     </div> -->
+    
+    <hr class="col-3 col-md-2 mb-2">
 
-    <hr class="col-3 col-md-2 mb-5">
+    <div class="container">
+      <img src="../../assets/img/mapa_guadalupe.png" width="100%">
+    </div>
+
+    <div class="input-group mb-3">
+        <form action="../../prcd/csv.php" method="post" enctype="multipart/form-data">
+          <input class="form-control" type="file" id="formFile" name="csv">
+        </form>
+        <button class="btn btn-primary" type="submit"><i class="bi bi-file-earmark-arrow-up-fill"></i> Cargar archivo</button>
+    </div>
 
     <div class="row g-5">
       <div class="col-md-6">
-        <h2 class="text-body-emphasis"><span class="text-danger"><i class="bi bi-x-circle-fill"></i> No votaron</span></h2>
+        <h2 class="text-body-emphasis"><span class="text-dark">Porcentajes RC's</span></h2>
         
         <table class="table table-sm small text-center">
           <thead>
             <tr class="table-dark">
               <th scope="col">Nombre</th>
-              <th scope="col">Clave N</th>
+              <th scope="col">Porcentaje</th>
               <th scope="col">Estatus</th>
             </tr>
           </thead>
-          <tbody>
-            <tr>
-              <th scope="row">Nombre</th>
-              <td>Mark</td>
-              <td><i class="bi bi-x-circle-fill text-danger"></i></td>
-            </tr>
+          <tbody id="porcentajeRC">
+            
             
           </tbody>
         </table>
