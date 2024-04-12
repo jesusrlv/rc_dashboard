@@ -187,24 +187,32 @@
     <div class="container">
       <img src="../../assets/img/mapa_guadalupe.png" width="100%">
     </div>
-
-    <div class="input-group mb-3">
+<!-- input csv -->
+    <div class="input-group mt-3 mb-3" >
         <form action="../../prcd/csv.php" method="post" enctype="multipart/form-data">
           <input class="form-control" type="file" id="formFile" name="csv">
         </form>
         <button class="btn btn-primary" type="submit"><i class="bi bi-file-earmark-arrow-up-fill"></i> Cargar archivo</button>
     </div>
 
-    <div class="row g-5">
+    <div class="row g-5 mt-3">
+
+      
       <div class="col-md-6">
-        <h2 class="text-body-emphasis"><span class="text-dark">Porcentajes RC's</span></h2>
+        <h2 class="text-body-emphasis"><span class="text-dark"><i class="bi bi-box-seam-fill"></i> Reportes casillas</span></h2>
+        <select class="form-select mb-3" aria-label="Default select example">
+          <option selected>Selecciones casilla...</option>
+          <option value="1">Casilla 1</option>
+          <option value="2">Casilla 2</option>
+          <option value="3">Casilla 3</option>
+        </select>
         
         <table class="table table-sm small text-center">
           <thead>
             <tr class="table-dark">
-              <th scope="col">Nombre</th>
-              <th scope="col">Porcentaje</th>
-              <th scope="col">Estatus</th>
+              <th scope="col">Partido</th>
+              <th scope="col">Votación</th>
+              <th scope="col">Casilla</th>
             </tr>
           </thead>
           <tbody id="porcentajeRC">
