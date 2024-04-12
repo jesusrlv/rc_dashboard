@@ -46,7 +46,6 @@
     if (!empty($_FILES['csv']['name']) && in_array($_FILES['csv']['type'], $fileMimes))
     {
         
- 
             // Open uploaded CSV file with read-only mode
             $csvFile = fopen($_FILES['csv']['tmp_name'], 'r');
  
@@ -76,7 +75,7 @@
                 $consulta = "SELECT * FROM listado WHERE curp = '$curp'";
                 $resultadoConsulta = $conn->query($consulta);
                 $filas = $resultadoConsulta->num_rows;
-                // If user already exists in the database with the same email
+                // If user already exists in the database with the same curp
 
                 if($filas == 0){
                     $Norepetidos++;
@@ -132,8 +131,6 @@
     {
         echo "Selecciona un archivo válido";
     }
-// }
 ?>
 </body>
-
 </html>
