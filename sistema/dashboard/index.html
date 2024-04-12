@@ -188,12 +188,12 @@
       <img src="../../assets/img/mapa_guadalupe.png" width="100%">
     </div>
 <!-- input csv -->
-    <div class="input-group mt-3 mb-3" >
         <form action="../../prcd/csv.php" method="post" enctype="multipart/form-data">
-          <input class="form-control" type="file" id="formFile" name="csv">
+          <div class="input-group mt-3 mb-3" >
+            <input class="form-control" type="file" id="formFile" name="csv">
+            <button class="btn btn-primary" type="submit"><i class="bi bi-file-earmark-arrow-up-fill"></i> Cargar archivo</button>
+          </div>
         </form>
-        <button class="btn btn-primary" type="submit"><i class="bi bi-file-earmark-arrow-up-fill"></i> Cargar archivo</button>
-    </div>
 
     <div class="row g-5 mt-3">
 

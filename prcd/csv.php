@@ -91,8 +91,6 @@
                     // ;
                 // código temporal para crear las variables de QR
 
-
-
                 // Get row data
                 $nominal = $getData[0];
                 $apellido_p = $getData[1];
@@ -100,12 +98,15 @@
                 $nombre = $getData[3];
                 $carrera = $getData[4];
                 $curp = $getData[5];
-                $concatenado = $curp.'_'.$no_control;
-                $perfil = 6;
+                $concatenado = $curp.'_'.$curp;
+                $seccion = "1";
+                $casilla = "A1";
+                $municipio = 54;
+                $direccion = "Col. Guadalupe";
+                $si_no = 1;
                 
                 $nombreCompleto = $nombre.' '.$apellido_p.' '.$apellido_m;
                 
-
                 $consulta = "SELECT * FROM listado WHERE curp = '$curp'";
                 $resultadoConsulta = $conn->query($consulta);
                 $filas = $resultadoConsulta->num_rows;
@@ -134,6 +135,8 @@
                             '". $direccion ."', 
                             '".$si_no."'
                             )");
+                        $error = $conn->error;
+                        echo $error;
 
                     // $insertUsuarios = "INSERT INTO usuarios(nombre, usr, pwd, perfil) VALUES('$nombreCompleto', '$no_control', '$no_control', '$perfil')";
                     // $resultadoUsr = $conn->query($insertUsuarios);
@@ -144,7 +147,7 @@
                 else{
                     $repetidos++;
                     echo '
-                    <p>'.$repetidos.'.- Se repite el asistente '.$nombre.' '.$apellido_p.' '.$apellido_m.' // '.$no_control.' // '.$curp.', no se agregó al sistema.<p>
+                    <p>'.$repetidos.'.- Se repite el asistente '.$nombre.' '.$apellido_p.' '.$apellido_m.' // '.$curp.' // '.$curp.', no se agregó al sistema.<p>
                     ';
 
                 }
@@ -158,14 +161,14 @@
                 echo "<script type=\"text/javascript\">
                 Swal.fire({
                     icon: 'success',
-                    imageUrl: '../../assets/brand/img/somos_fca_halcon_azul_15.png',
+                    imageUrl: '../assets/brand/fingerprint.svg',
                     imageHeight: 200,
-                    imageAlt: 'UACYA UAZ',
-                    title: 'Asistentes agregados',
+                    imageAlt: 'Elecciones',
+                    title: 'Listado agregado',
                     text: 'Se agregaron ".$Norepetidos." y se descartaron ".$repetidos."',
                     confirmButtonColor: '#3085d6',
-                    footer: 'UACYA'
-                }).then(function(){window.location='../alta_asistentes.php';});</script>";
+                    footer: 'Listado'
+                }).then(function(){window.location='../sistema/dashboard/';});</script>";
 
         
     }
