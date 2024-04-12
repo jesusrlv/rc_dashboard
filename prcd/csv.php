@@ -21,15 +21,11 @@
 
     session_start();
     include('../prcd/qc.php');
-    // include('../QR/phpqrcode/qrlib.php'); 
-
     date_default_timezone_set('America/Mexico_City');
                   setlocale(LC_TIME, 'es_MX.UTF-8');
     $fecha_qr = strftime("%Y-%m-%d,%H:%M:%S");
     $repetidos = 0;
     $Norepetidos = 0;
-
-    // $id = $_POST['id'];
  
     // Allowed mime types
     $fileMimes = array(
@@ -57,39 +53,9 @@
             // Skip the first line
             fgetcsv($csvFile);
  
-            // Parse data from CSV file line by line
              // Parse data from CSV file line by line
             while (($getData = fgetcsv($csvFile, 10000, ",")) !== FALSE)
             {
-
-                //falta definir la mesa, evento, tipo de invitado, la consulta para definir el $rowEvent
-
-                // código temporal para crear las variables de QR
-                // archivo query_agregar_invitados.php para acomodar las variables
-                // function generarCodigo($longitud) {
-                //     $key = '';
-                //     $pattern = '1234567890abcdefghijklmnopqrstuvwxyz';
-                //     $max = strlen($pattern)-1;
-                //     for($i=0;$i < $longitud;$i++) $key .= $pattern{mt_rand(0,$max)};
-                //     return $key;
-                //     }
-                //     //genera un código de 9 caracteres de longitud.
-                //     $codigo = generarCodigo(9);
-                //     $contatena = $evento.'_'.$codigo.'_'.$mesa.'_'.$fecha_qr;
-            
-                //     $codesDir = "QR/codes/";   
-                //     $codesDir2 = "../QR/codes/";   
-
-                    // $codeFile = $evento.'_'.$codigo.'_'.$mesa.'.png';
-                    // $qrDirectorio = $codesDir.'/'.$codeFile;
-                    // QRcode::png($contatena, $codesDir2.$codeFile, 'H', 10); 
-                    // echo '
-                    // <div id="div_print">
-                    //     <p><strong>Código Eventos<br>2022</strong></p>
-                    //     <p class="text-center"><img class="img-thumbnail" src="../'.$codesDir.$codeFile.'" /></p>
-                    // </div>'
-                    // ;
-                // código temporal para crear las variables de QR
 
                 // Get row data
                 $nominal = $getData[0];
@@ -111,10 +77,8 @@
                 $resultadoConsulta = $conn->query($consulta);
                 $filas = $resultadoConsulta->num_rows;
                 // If user already exists in the database with the same email
-                // $query = "SELECT id FROM invitados WHERE id_evento = '" . $getData[5] . "'";
 
                 if($filas == 0){
-                // $check = mysqli_query($conn, $query);
                     $Norepetidos++;
                     mysqli_query($conn, "INSERT INTO listado (
                         nominal, 
@@ -138,11 +102,6 @@
                         $error = $conn->error;
                         echo $error;
 
-                    // $insertUsuarios = "INSERT INTO usuarios(nombre, usr, pwd, perfil) VALUES('$nombreCompleto', '$no_control', '$no_control', '$perfil')";
-                    // $resultadoUsr = $conn->query($insertUsuarios);
-
-                    // $error = $conn->error;
-                    // echo $error;
                 }
                 else{
                     $repetidos++;
@@ -155,8 +114,6 @@
 
             // Close opened CSV file
             fclose($csvFile);
-
-            // header("Location: ../home_events.php?id=$id");
             
                 echo "<script type=\"text/javascript\">
                 Swal.fire({
@@ -169,7 +126,6 @@
                     confirmButtonColor: '#3085d6',
                     footer: 'Listado'
                 }).then(function(){window.location='../sistema/dashboard/';});</script>";
-
         
     }
     else
